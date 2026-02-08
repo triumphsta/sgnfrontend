@@ -1,0 +1,73 @@
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header-top {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    #welcome {
+        font-size: 1.2rem;
+    }
+    
+    #desktop-nav ul {
+        display: none;
+    }
+    .mobile-nav {
+        display: inline-block;
+        background: none;
+    }
+    .game_box {
+        width: max-content;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        
+        gap: 0.5rem;
+    }
+    
+    #welcome {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .game_box {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+  
+    
+    .game_box {
+        width: 100%;
+    }
+}   
+
+@media (max-width: 768px) {
+    .mobile-nav { display: block; }
+    #desktop-nav { display: none; }
+    .game_box { width: 45%; }
+    .game-details-container { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .game_box { width: 100%; }
+}
+
+
+@media (min-width: 768px) {
+    .actions-grid {
+        flex-direction: row;
+    }
+    .action-card {
+        flex: 1;
+    }
+}
+
+/* Desktop Adjustment */
+@media (min-width: 900px) {
+    .action-stack { flex-direction: row; }
+    .glass-action { flex: 1; }
+}

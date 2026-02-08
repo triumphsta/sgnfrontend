@@ -1,0 +1,64 @@
+body {
+    background-color: navy; /* Normal BG Blue */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#loader {
+    /* Box Styling */
+    
+    padding: 0.1rem;
+    background: navy; 
+    
+    /* Loader BG Black */
+    border: 1px solid white;
+    border-radius: 10%;
+    
+    /* Centering Logic */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* We set the initial state here */
+    transform: translate(-50%, -50%);
+    
+    /* Flexbox to center the image INSIDE the black box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    
+    /* Animation */
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+#loader img {
+    width: 200px;
+    height: auto;
+    /* Optional: I removed the animation from the image 
+       so the box pulses as one unit. If you want the image 
+       to pulse independently, add it back. */
+    filter: drop-shadow(0 0 15px rgba(0, 255, 120, 0.6));
+}
+
+/* FIXED ANIMATION:
+   We must include 'translate(-50%, -50%)' in every step.
+   If we don't, the element forgets it is centered.
+*/
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.7;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.7;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}

@@ -1,0 +1,790 @@
+/* ========================
+   1. VARIABLES & RESET
+   ======================== */
+:root {
+    --background-color: hsl(250, 100%, 6%);
+
+    --primary-color: hsl(180, 70%, 50%); 
+    /* for a subtle glow */ 
+    --primary-glow: hsla(180, 70%, 50%, 0.3); 
+    --secondary-color: #ffffff;
+    --accent-color: hsl(39, 100%, 50%);
+    --box-bg-color: hsla(0, 0%, 100%, 0.1);
+    --primary-font-size: 16px;
+    --font-family: 'Arial', sans-serif;
+    
+    /* Utility Filters */
+    --brightness-150: brightness(150%);
+    --brightness-100: brightness(100%);
+    --brightness-90: brightness(90%);
+
+    /* box shadow */
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    --glow-shadow: 0 0 15px var(--primary-color);
+
+    --rank-gold: #FFD700;
+    --rank-silver: #C0C0C0;
+    --rank-bronze: #CD7F32;
+    --status-live: #ff4444;
+
+    /* second use */
+    --bg-deep: hsl(250, 100%, 6%);
+    --primary: hsl(190, 80%, 50%); /* Softer Cyan */
+    --glass-white: hsla(0, 0%, 100%, 0.03);
+    --border-light: hsla(0, 0%, 100%, 0.07);
+    --text-dim: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: #333;
+    line-height: 1.6;
+    margin: 2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+
+/* ========================
+   2. HEADER & NAV STYLES
+   ======================== */
+#header {
+    background-color: var(--background-color);
+    filter: var(--brightness-90);
+    opacity: 0.95;
+    color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#welcome {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+#header-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#search-button {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+#search-button:hover,
+#search-button:focus {
+    color: var(--primary-color);
+    outline: none;
+}
+
+/* Dropdown & Profile */
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger:focus {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.dropdown-arrow {
+    width: 1rem;
+    height: 1rem;
+    fill: var(--secondary-color);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(60% + 0.5rem);
+    right: 30px;
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    list-style: none;
+    padding: 0.5rem 0;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 50;
+    border: 1px solid var(--primary-color);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 0.8rem;
+    border-radius: 0.5rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(255,255,255,0.1);
+    outline: none;
+}
+
+/* Desktop Nav */
+#desktop-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#desktop-nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+#desktop-nav a:hover,
+#desktop-nav a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    outline: none;
+}
+
+/* Mobile Nav */
+.mobile-nav { display: none; }
+
+/* ========================
+   3. FILTERS & GAME TYPES
+   ======================== */
+.game_type-container {
+    display:flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: auto;
+    align-items: center;
+}
+
+.game_box {
+    display: inline;
+    background-color: var(--box-bg-color);
+    filter: var(--brightness-150);
+    height: fit-content;
+    margin: 1rem;
+    width: 25%;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.game-filter_container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: 1rem;
+    z-index: 1000;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 20px;
+}
+
+.tournament-filter {
+    flex: 0 0 auto;
+    color: var(--secondary-color);
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tournament-filter:hover {
+    background-color: var(--primary-color);
+}
+
+#game-types {
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+#game-types option {
+    background-color: #000;
+    color: white;
+}
+
+/* ========================
+   4. NEW TOURNAMENT CARDS
+   ======================== */
+
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* Important: align-items start prevents stretching to weird heights */
+    align-items: flex-start; 
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 20px 0;
+}
+
+.game-details-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 320px; /* Base width */
+    height: auto; /* Scales to content/image */
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+    background-color: var(--box-bg-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--box-shadow);
+}
+
+.game-details-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow-shadow);
+}
+
+.image-container {
+    width: 100%;
+    line-height: 0;
+    position: relative;
+}
+
+/* This is the magic scaling part */
+.image-container img {
+    width: 100%;
+    height: auto; 
+    display: block;
+    object-fit: cover;
+}
+
+.info-section {
+    background-color: rgba(0,0,0,0.4);
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* New Data Grid Styling */
+.tournament-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 5px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ddd;
+}
+
+/* Schedule Section */
+.schedule {
+    font-size: 0.8rem;
+    color: #aaa;
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.game-title {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.view-tournament {
+    margin-top: auto;
+    padding: 12px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.view-tournament:hover {
+    background: var(--accent-color);
+    color: black;
+}
+
+/* ========================
+   5. ANIMATIONS
+   ======================== */
+.status-active {
+    color: #4caf50;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-active::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 rgba(76, 175, 80, 0.4);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+/* ========================
+   DASHBOARD GRID SECTION
+   ======================== */
+
+.dashboard-grid {
+    display: grid;
+    /* Auto-fit creates 3 columns on desktop, stacks on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 1.5rem;
+    margin: 3rem 0; /* Spacing from other sections */
+}
+
+/* Common Card Style (Matches your existing Game Box) */
+.dashboard-card {
+    background-color: var(--box-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem; /* Matches your game_box radius */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Optional: Glass blur effect */
+    backdrop-filter: blur(5px); 
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.view-all, .live-count {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- LEADERBOARD STYLES --- */
+.leaderboard-list {
+    list-style: none;
+}
+
+.lb-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.lb-item:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+.rank-num {
+    font-weight: bold;
+    width: 25px;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* Ranking Colors using new variables */
+.rank-1 .rank-num { color: var(--rank-gold); text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+.rank-2 .rank-num { color: var(--rank-silver); }
+.rank-3 .rank-num { color: var(--rank-bronze); }
+
+.lb-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+/* Gold border for #1 */
+.rank-1 .lb-avatar { border-color: var(--rank-gold); }
+
+.lb-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.lb-name {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.lb-score {
+    color: var(--primary-color); /* Uses your purple/blue */
+    font-size: 0.8rem;
+}
+
+/* --- UPCOMING STYLES --- */
+.event-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 1rem;
+}
+
+.date-badge {
+    background: rgba(255,255,255,0.05);
+    border-radius: 0.8rem;
+    padding: 0.5rem;
+    text-align: center;
+    min-width: 50px;
+    border: 1px solid var(--primary-color);
+}
+
+.date-badge .month {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+}
+
+.date-badge .day {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.event-info h4 {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.event-info small {
+    color: #aaa;
+}
+
+.btn-icon {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.btn-icon:hover {
+    color: var(--accent-color); /* Uses your orange/gold accent */
+    opacity: 1;
+}
+
+/* --- LIVE NOW STYLES --- */
+.stream-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 1rem;
+}
+
+.stream-avatar-container {
+    position: relative;
+}
+
+.stream-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid var(--status-live);
+}
+
+.live-badge-mini {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--status-live);
+    color: white;
+    font-size: 0.55rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.stream-info h4 {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    /* Truncate text if too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.stream-info small {
+    color: var(--primary-color);
+}
+
+
+/* ========================
+   QUICK ACTIONS SECTION
+   ======================== */
+
+.quick-actions-container {
+    margin: 2rem 0 3rem 0;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    
+    font-weight: 700;
+}
+
+.actions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-card {
+    display: flex;
+    align-items: center;
+    background: rgba(13, 17, 23, 0.6); /* Slightly darker than your box-bg */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(8px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow);
+}
+
+/* Icon Styles */
+.action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1.25rem;
+}
+
+/* Coloring the icons to match the screenshot vibes */
+.action-icon.join { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+.action-icon.host { color: #10b981; background: rgba(16, 185, 129, 0.1); }
+.action-icon.leader { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+
+.action-text h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--secondary);
+}
+
+.action-text p {
+    font-size: 0.85rem;
+    margin: 4px 0 0 0;
+    color: #8899a6; /* Muted slate blue/grey */
+}
+
+.arrow {
+    margin-left: auto;
+    color: #444;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.action-card:hover .arrow {
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+/* --- Global Updates --- */
+:root {
+    --bg-deep: hsl(250, 100%, 6%);
+    --primary: hsl(190, 80%, 50%); /* Softer Cyan */
+    --glass-white: hsla(0, 0%, 100%, 0.03);
+    --border-light: hsla(0, 0%, 100%, 0.07);
+    --text-dim: #94a3b8;
+}
+
+.group-label {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.9;
+}
+
+/* --- Quick Actions Stack --- */
+.action-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.glass-action {
+    display: flex;
+    align-items: center;
+    background: var(--glass-white);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.2rem;
+    text-decoration: none;
+    transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.glass-action:hover {
+    background: hsla(190, 80%, 50%, 0.05);
+    border-color: var(--primary);
+    transform: translateX(6px);
+}
+
+.icon-wrap {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    margin-right: 1.2rem;
+}
+
+.icon-wrap.cyan { color: var(--primary); background: hsla(190, 80%, 50%, 0.1); }
+.icon-wrap.green { color: #10b981; background: rgba(16, 185, 129, 0.1); }
+.icon-wrap.gold { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+
+.text-wrap h3 { font-size: 0.95rem; color: var(--secondary); margin: 0; }
+.text-wrap p { font-size: 0.8rem; color: var(--text-dim); margin: 2px 0 0 0; }
+
+.arrow { margin-left: auto; color: #334155; font-size: 0.8rem; }
+
+/* --- Community Stats --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--glass-white);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.trend { font-size: 0.7rem; font-weight: bold; }
+.trend.up { color: #10b981; }
+
+.stat-card small { color: var(--text-dim); font-size: 0.75rem; display: block; }
+.stat-val { color: var(--secondary); font-size: 1.6rem; font-weight: 800; margin-top: 5px; }
+
+
+
+
+
+
+
+
+

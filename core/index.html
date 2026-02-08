@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The official website for Sui Gaming ng, your go-to source for gaming news and updates.">
+    <meta property="og:title" content="Sui Gaming Nigeria">
+    <meta property="og:description" content="The official Sui Gaming Nigeria Website">
+    <meta property="og:image" content="image.jpg">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/responsive_css.css">
+    
+    <script src="https://kit.fontawesome.com/5b5559cc5a.js" crossorigin="anonymous" defer></script>
+    <!-- <script src="/static/script/tailwind.cdn.js"></script> -->
+    <script src="/static/script/htmx.min.js"></script>
+    <script defer src="/static/script/alpine.js"></script>
+   
+    <title>Sui Gaming ng</title>
+</head> 
+<body hx-boost="true" hx-target="main" hx-swap="innerHTML" hx-push-url="true" hx-select="main">
+
+    <header id="header" class="header-class">
+        <div class="header-top">
+            <h1 id="welcome">Sui Gaming Nigeria</h1>
+            
+            <div id="header-container">
+                <!-- desktop nav -->
+                <nav id="desktop-nav" aria-label="Main navigation">  
+                    <ul>
+                        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="/tournament"><i class="fa-solid fa-chess"></i> Tournament</a></li>
+                        <li><a href="/about"><i class="fa-solid fa-address-card"></i> About</a></li>
+                        <li><a href="/contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- search icon -->
+                <div id="search">
+                    <button id="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                
+                <!-- Profile Dropdown -->
+                <div class="profile" x-data="{ open: false }">
+                    <!-- Trigger button -->
+                    <button class="dropdown-trigger" 
+                            @click="open = !open"
+                            @keydown.escape="open = false"
+                            @keydown.arrow-down.prevent="$nextTick(()=> $refs.profileMenu.querySelector('.dropdown-item')?.focus())"
+                            aria-haspopup="true"
+                            :aria-expanded="open"
+                            aria-controls="profile-menu"
+                            aria-label="Profile menu">
+                        <img src="/static/images/profile.jpg" alt="Profile Picture" class="profile-pic">
+                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <ul id="profile-menu" x-ref="profileMenu" class="dropdown-menu"
+                        x-show="open"
+                        @click.away="open = false"
+                        role="menu"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95">
+                        <li><a href="#" class="dropdown-item" role="menuitem" tabindex="0" @click="open = false">Account</a></li><hr>
+                        <li><a href="#" class="dropdown-item" role="menuitem" tabindex="0" @click="open = false">Settings</a></li><hr>
+                        <li><a href="#" class="dropdown-item" role="menuitem" tabindex="0" @click="open = false">Sign out</a></li>
+                    </ul>
+                    </div>
+
+                <!-- Mobile nav -->
+                <div class="mobile-nav" x-data="{ open: false }">
+                <!-- Hamburger trigger -->
+                    <button class="dropdown-trigger mobile-nav-toggle" 
+                            @click="open = !open"
+                            @keydown.escape="open = false"
+                            @keydown.arrow-down.prevent="$nextTick(()=> $refs.mobileMenu.querySelector('.dropdown-item')?.focus())"
+                            aria-haspopup="true"
+                            :aria-expanded="open"
+                            aria-controls="mobile-menu"
+                            aria-label="Toggle mobile menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <!-- Mobile menu dropdown -->
+                    <ul id="mobile-menu" x-ref="mobileMenu" class="dropdown-menu"
+                        x-show="open"
+                        @click.away="open = false"
+                        role="menu"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95">
+                        <li><a href="/" class="dropdown-item" role="menuitem" tabindex="0"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="/tournament" class="dropdown-item" role="menuitem" tabindex="0"><i class="fa-solid fa-chess"></i> Tournament</a></li>
+                        <li><a href="/about" class="dropdown-item" role="menuitem" tabindex="0"><i class="fa-solid fa-address-card"></i> About</a></li>
+                        <li><a href="/contact" class="dropdown-item" role="menuitem" tabindex="0"><i class="fa-solid fa-phone"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+    
+                
+        </div>
+
+        
+    </header>
+
+   <main id="main">
+        <div class="welcome-content">
+            <h2>Welcome to Sui Gaming Nigeria</h2>
+            <p>The Home of <b>Gaming</b></p>
+        </div>
+
+        <div class="game-filter_container">
+            <span class="tournament-filter">All Tournaments</span>
+            <span class="tournament-filter">Live Now</span>
+            <span class="tournament-filter">Upcoming</span>
+            <span class="tournament-filter">Trending</span>
+            <div class="tournament-filter game-type-filter">
+                <select id="game-types">
+                    <option value="" disabled selected>Select Game Type</option>
+                    <option value="Action">Action</option>
+                    <option value="Arcade">Arcade</option>
+                    <option value="Arcade">Simulation</option>
+                    <option value="Arcade">Racing</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="game-list">
+
+            <div class="game-details-container">
+                <div class="image-container">
+                    <img src="/static/images/cod-landscape.jpg" alt="COD Banner" onerror="this.src='https://placehold.co/600x400/1a1a1a/FFF?text=Landscape+Img'">
+                </div>
+                
+                <div class="info-section">
+                    <h2 class="game-title">Warzone Weekly</h2>
+                    
+                    <div class="tournament-meta">
+                        <div class="meta-item">🏆 <span>$5,000 Pool</span></div>
+                        <div class="meta-item">👥 <span>12/64 Players</span></div>
+                        <div class="meta-item">💰 <span>Free Entry</span></div>
+                        <div class="meta-item status-active">Live Now</div>
+                    </div>
+
+                    <div class="schedule">
+                        <small>📅 <strong>Start:</strong> Jan 20, 10:00 AM</small><br>
+                        <small>🏁 <strong>End:</strong> Jan 22, 06:00 PM</small>
+                    </div>
+
+                    <p>Battle Royale. Squads of 4. High stakes elimination rounds.</p>
+                    <button class="view-tournament">Join Lobby</button>
+                </div>
+            </div>
+
+            <div class="game-details-container">
+                <div class="image-container">
+                    <img src="/static/images/mobile-legend.jpg" alt="Mobile Banner" onerror="this.src='https://placehold.co/400x600/1a1a1a/FFF?text=Portrait+Img'">
+                </div>
+                
+                <div class="info-section">
+                    <h2 class="game-title">Mobile Legends</h2>
+                    
+                    <div class="tournament-meta">
+                        <div class="meta-item">🏆 <span>$1,000 Pool</span></div>
+                        <div class="meta-item">👥 <span>5v5 Teams</span></div>
+                        <div class="meta-item">💰 <span>$10 Entry</span></div>
+                        <div class="meta-item">⏳ <span>Reg Open</span></div>
+                    </div>
+
+                    <div class="schedule">
+                        <small>📅 <strong>Start:</strong> Feb 05, 12:00 PM</small><br>
+                        <small>🏁 <strong>End:</strong> Feb 05, 08:00 PM</small>
+                    </div>
+
+                    <p>Ranked play for mobile elites. Prove your skills.</p>
+                    <button class="view-tournament">Register Team</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <section class="dashboard-grid">
+    
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3>🔥 Top Players</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <ul class="leaderboard-list">
+            <li class="lb-item rank-1">
+                <span class="rank-num">1</span>
+                <img src="/static/images/profile.jpg" alt="User" class="lb-avatar"> <div class="lb-info">
+                    <span class="lb-name">Viper_X</span>
+                    <span class="lb-score">9,840 XP</span>
+                </div>
+            </li>
+            <li class="lb-item rank-2">
+                <span class="rank-num">2</span>
+                <img src="/static/images/profile.jpg" alt="User" class="lb-avatar">
+                <div class="lb-info">
+                    <span class="lb-name">K3ZZ_99</span>
+                    <span class="lb-score">8,200 XP</span>
+                </div>
+            </li>
+            <li class="lb-item rank-3">
+                <span class="rank-num">3</span>
+                <img src="/static/images/profile.jpg" alt="User" class="lb-avatar">
+                <div class="lb-info">
+                    <span class="lb-name">GhostMane</span>
+                    <span class="lb-score">7,950 XP</span>
+                </div>
+            </li>
+            <li class="lb-item">
+                <span class="rank-num">4</span>
+                <img src="/static/images/profile.jpg" alt="User" class="lb-avatar">
+                <div class="lb-info">
+                    <span class="lb-name">PixelQueen</span>
+                    <span class="lb-score">6,400 XP</span>
+                </div>
+            </li>
+            <li class="lb-item">
+                <span class="rank-num">5</span>
+                <img src="/static/images/profile.jpg" alt="User" class="lb-avatar">
+                <div class="lb-info">
+                    <span class="lb-name">DriftKing</span>
+                    <span class="lb-score">6,120 XP</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3>📅 Upcoming</h3>
+            <a href="#" class="view-all">Calendar</a>
+        </div>
+        <div class="upcoming-list">
+            <div class="event-row">
+                <div class="date-badge">
+                    <span class="month">OCT</span>
+                    <span class="day">24</span>
+                </div>
+                <div class="event-info">
+                    <h4>Valorant Monthly</h4>
+                    <small>14:00 PM EST</small>
+                </div>
+                <button class="btn-icon"><i class="fa-regular fa-bell"></i></button>
+            </div>
+            <div class="event-row">
+                <div class="date-badge">
+                    <span class="month">OCT</span>
+                    <span class="day">28</span>
+                </div>
+                <div class="event-info">
+                    <h4>Apex Duo Cup</h4>
+                    <small>12:00 PM EST</small>
+                </div>
+                <button class="btn-icon"><i class="fa-regular fa-bell"></i></button>
+            </div>
+            <div class="event-row">
+                <div class="date-badge">
+                    <span class="month">NOV</span>
+                    <span class="day">02</span>
+                </div>
+                <div class="event-info">
+                    <h4>Tekken 8 Clash</h4>
+                    <small>20:00 PM EST</small>
+                </div>
+                <button class="btn-icon"><i class="fa-regular fa-bell"></i></button>
+            </div>
+             </div>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3>🔴 Live Now</h3>
+            <span class="live-count">12k Watching</span>
+        </div>
+        <div class="live-list">
+            <div class="stream-row">
+                <div class="stream-avatar-container">
+                    <img src="/static/images/profile.jpg" alt="Streamer" class="stream-avatar">
+                    <div class="live-badge-mini">LIVE</div>
+                </div>
+                <div class="stream-info">
+                    <h4>Grand Finals: T1 vs GEN</h4>
+                    <small>League of Legends</small>
+                </div>
+            </div>
+            <div class="stream-row">
+                <div class="stream-avatar-container">
+                    <img src="/static/images/profile.jpg" alt="Streamer" class="stream-avatar">
+                    <div class="live-badge-mini">LIVE</div>
+                </div>
+                <div class="stream-info">
+                    <h4>Speedrun Charity</h4>
+                    <small>Super Mario 64</small>
+                </div>
+            </div>
+             </div>
+    </div>
+
+</section>
+<section class="quick-actions-container">
+    <h2 class="section-title">Quick Actions</h2>
+    
+    <div class="actions-grid">
+        <a href="/tournament" class="action-card">
+            <div class="action-icon join">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="action-text">
+                <h3>Join a Tournament</h3>
+                <p>Browse and join active tournaments</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+
+        <a href="/host" class="action-card">
+            <div class="action-icon host">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="action-text">
+                <h3>Host Tournament</h3>
+                <p>Create and manage your own events</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+
+        <a href="#leaderboard" class="action-card">
+            <div class="action-icon leader">
+                <i class="fa-solid fa-medal"></i>
+            </div>
+            <div class="action-text">
+                <h3>View Leaderboard</h3>
+                <p>Check top players and rankings</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+    </div>
+</section>
+
+<!-- <section class="stats-section">
+        <h2 class="group-label">Community Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-top">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="trend up">+15% <i class="fa-solid fa-caret-up"></i></span>
+                </div>
+                <small>Active Players</small>
+                <div class="stat-val">12,450</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="trend up">+8% <i class="fa-solid fa-caret-up"></i></span>
+                </div>
+                <small>Tournaments Hosted</small>
+                <div class="stat-val">1,234</div>
+            </div>
+        </div>
+</section> -->
+
+    </main>
+</body> 
+</html>
