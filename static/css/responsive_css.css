@@ -1,4 +1,6 @@
 /* Responsive Design */
+
+/* For headers and desktop navs */
 @media (max-width: 1024px) {
     .header-top {
         flex-direction: row;
@@ -16,47 +18,29 @@
         display: inline-block;
         background: none;
     }
-    .game_box {
-        width: max-content;
-    }
-}
-
+       
+       /* For game box and headers */
 @media (max-width: 768px) {
-    .header-top {
-        
+    .header-top {   
         gap: 0.5rem;
     }
-    
     #welcome {
         font-size: 1.5rem;
         text-align: center;
     }
-    
-    .game_box {
-        width: 80%;
-    }
-}
-
+    .game_box { width: 45%; }
+    .game-details-container { width: 50%;}
+        .game_box { width: 45%; }
+        .game-details-container { width: 100%; }
+        .mobile-nav { display: block; }
+        #desktop-nav { display: none; }
 @media (max-width: 480px) {
-  
-    
-    .game_box {
+  .game_box {
         width: 100%;
     }
 }   
 
-@media (max-width: 768px) {
-    .mobile-nav { display: block; }
-    #desktop-nav { display: none; }
-    .game_box { width: 45%; }
-    .game-details-container { width: 100%; }
-}
-
-@media (max-width: 480px) {
-    .game_box { width: 100%; }
-}
-
-
+/* desktops  */
 @media (min-width: 768px) {
     .actions-grid {
         flex-direction: row;

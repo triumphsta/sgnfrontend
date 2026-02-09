@@ -10,6 +10,12 @@
     --secondary-color: #ffffff;
     --accent-color: hsl(39, 100%, 50%);
     --box-bg-color: hsla(0, 0%, 100%, 0.1);
+       /* second use */
+    --bg-deep: hsl(250, 100%, 6%);
+    --glass-white: hsla(0, 0%, 100%, 0.03);
+    --border-light: hsla(0, 0%, 100%, 0.07);
+    --text-dim: #94a3b8;
+
     --primary-font-size: 16px;
     --font-family: 'Arial', sans-serif;
     
@@ -27,12 +33,7 @@
     --rank-bronze: #CD7F32;
     --status-live: #ff4444;
 
-    /* second use */
-    --bg-deep: hsl(250, 100%, 6%);
-    --primary: hsl(190, 80%, 50%); /* Softer Cyan */
-    --glass-white: hsla(0, 0%, 100%, 0.03);
-    --border-light: hsla(0, 0%, 100%, 0.07);
-    --text-dim: #94a3b8;
+ 
 }
 
 * {
@@ -313,13 +314,20 @@ h1, h2, h3 {
 .info-section {
     background-color: rgba(0,0,0,0.4);
     padding: 1.5rem;
-    flex-grow: 1;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     gap: 12px;
 }
+.game-title {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-/* New Data Grid Styling */
+/* Styling for the tournaments details in the info-section */
 .tournament-meta {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -344,14 +352,6 @@ h1, h2, h3 {
     background: rgba(255,255,255,0.05);
     padding: 8px;
     border-radius: 6px;
-}
-
-.game-title {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .view-tournament {
@@ -413,7 +413,7 @@ h1, h2, h3 {
     margin: 3rem 0; /* Spacing from other sections */
 }
 
-/* Common Card Style (Matches your existing Game Box) */
+/* card styles */
 .dashboard-card {
     background-color: var(--box-bg-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -690,14 +690,7 @@ h1, h2, h3 {
     transform: translateX(4px);
 }
 
-/* --- Global Updates --- */
-:root {
-    --bg-deep: hsl(250, 100%, 6%);
-    --primary: hsl(190, 80%, 50%); /* Softer Cyan */
-    --glass-white: hsla(0, 0%, 100%, 0.03);
-    --border-light: hsla(0, 0%, 100%, 0.07);
-    --text-dim: #94a3b8;
-}
+
 
 .group-label {
     font-size: 1.1rem;
